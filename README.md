@@ -32,4 +32,16 @@ for (var i = 0; i <= 10; i++) {
             // Si no es numérico, mostrar un alert indicando que es una cadena
             alert("El texto introducido es una cadena.");
 
-            
+# textos concatenados
+
+  // introduzca el primer texto
+        let texto1 = prompt("Introduce el primer texto:");
+
+        //  introduzca el segundo texto
+        let texto2 = prompt("Introduce el segundo texto:");
+
+        // Concatenar los dos textos
+        let textoConcatenado = texto1 + " " +  texto2;
+
+        // texto concatenado en un alert
+        alert("Los textos concatenados son: " + textoConcatenado);
