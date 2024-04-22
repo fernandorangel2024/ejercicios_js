@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cronómetro</title>
+</head>
+<body>
+    <h1>Cronómetro</h1>
+    <h2 id="timer">00:00:00:000</h2>
+    <button onclick="start()">Arrancar</button>
+    <button onclick="stop()">Parar</button>
+    <button onclick="resume()">Continuar</button>
+    <button onclick="reset()">Reiniciar</button>
+
+    <script>
+        var startTime;
+        var elapsedTime = 0;
+        var timerInterval;
+
+        function start() {
+            startTime = new Date().getTime() - elapsedTime;
+            timerInterval = setInterval(updateTimer, 10);
+        }
+
+        function stop() {
+            clearInterval(timerInterval);
+        }
+
+        function resume() {
+            startTime = new Date().getTime() - elapsedTime;
+            timerInterval = setInterval(updateTimer, 10);
+        }
+
+        function reset() {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            document.getElementById("timer").innerHTML = "00:00:00:000";
+        }
+
+        function updateTimer() {
+            var currentTime = new Date().getTime();
+            elapsedTime = currentTime - startTime;
+
+            var milliseconds = Math.floor(elapsedTime % 1000);
+            var seconds = Math.floor((elapsedTime / 1000) % 60);
+            var minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+            var hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24);
+
+            milliseconds = pad(milliseconds, 3);
+            seconds = pad(seconds, 2);
+            minutes = pad(minutes, 2);
+            hours = pad(hours, 2);
+
+            document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds + ":" + milliseconds;
+        }
+
+        function pad(number, length) {
+            var str = '' + number;
+            while (str.length < length) {
+                str = '0' + str;
+            }
+            return str;
+        }
+    </script>
+</body>
+</html>
+
